@@ -17,11 +17,13 @@ import javax.swing.text.JTextComponent;
 @SuppressWarnings("serial")
 public class GraphicPanel extends JPanel 
 {
-	
-	
 	private int xPos = 0, yPos=0;
 	private boolean penUp = true;
-	private int direction = 180;
+	private final static int DOWN = 0;
+	private final static int UP = 1;
+	private final static int LEFT = 2;
+	private final static int RIGHT = 3;
+	private int direction = DOWN;
 	
 	
 	//The default BG colour of the image.
@@ -56,54 +58,127 @@ public class GraphicPanel extends JPanel
 	
 	public void turnRight()
 	{
+		switch(direction)
+		{
+			case UP:
+					direction = RIGHT;
+					break;
+			case DOWN:
+					direction = LEFT;
+					break;
+			case LEFT:
+					direction = UP;
+					break;
+			case RIGHT:
+					direction = DOWN;
+					break;
+			default:
+					break;
 		
+		}	
 	}
 	
 	public void turnLeft()
 	{
+		switch(direction)
+		{
+			case UP:
+					direction = LEFT;
+					break;
+			case DOWN:
+					direction = RIGHT;
+					break;
+			case LEFT:
+					direction = DOWN;
+					break;
+			case RIGHT:
+					direction = UP;
+					break;
+			default:
+					break;
 		
+		}
 	}
 	
 	public void forward(int amount)
 	{
-		if (direction == 180)
+		
+		if(penUp)
+			return;
+		
+		if (direction == DOWN)
 		{
-			if(penUp == false)
-				{
-					drawLine(Color.red, xPos, yPos, xPos, yPos + amount );
-					yPos = yPos + amount;
-				}
-			
-		else if (direction == 270)
-				
-				{
-			if(penUp == false)
-				{
-					drawLine(Color.red, xPos, yPos, xPos - amount, yPos );
-					xPos = xPos - amount;
-				}
-			}
+			drawLine(Color.red, xPos, yPos, xPos, yPos + amount );
+			yPos = yPos + amount;
 		}
+		
+		else if (direction == UP)
+		{
+			drawLine(Color.red, xPos, yPos, xPos, yPos - amount );
+			yPos = yPos - amount;
+		}
+			
+		else if (direction == LEFT)		
+		{
+			drawLine(Color.red, xPos, yPos, xPos - amount, yPos );
+			xPos = xPos - amount;
+		}
+		
+		else if (direction == RIGHT)		
+		{
+			drawLine(Color.red, xPos, yPos, xPos + amount, yPos );
+			xPos = xPos + amount;
+		}
+			
 	}
+	
 	
 	public void backward(int amount)
 	{
+		if(penUp)
+			return;
 		
+		if (direction == DOWN)
+		{
+			drawLine(Color.red, xPos, yPos, xPos, yPos - amount );
+			yPos = yPos - amount;
+		}
+		
+		else if (direction == UP)
+		{
+			drawLine(Color.red, xPos, yPos, xPos, yPos + amount );
+			yPos = yPos + amount;
+		}
+			
+		else if (direction == LEFT)		
+		{
+			drawLine(Color.red, xPos, yPos, xPos + amount, yPos );
+			xPos = xPos + amount;
+		}
+		
+		else if (direction == RIGHT)		
+		{
+			drawLine(Color.red, xPos, yPos, xPos - amount, yPos );
+			xPos = xPos - amount;
+		}
 	}
 	
 	public void black()
 	{
-		
+		Graphics g = image.getGraphics();
+		g.setColor(Color.black);
 	}
 	
 	public void green()
 	{
-		
+		Graphics g = image.getGraphics();
+		g.setColor(Color.green);
 	}
 	
 	public void red()
 	{
-		
+		Graphics g = image.getGraphics();
+		g.setColor(Color.red);
 	}
 	
 	public void drawLine(Color color, int x1, int y1, int x2, int y2) {
