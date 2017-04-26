@@ -27,7 +27,7 @@ public class GraphicMenu extends JPanel implements ActionListener  {
 	    
 	public GraphicMenu(JFrame frame)
 	{
-	// adds the file and help tabs to the menu bar
+	// adds the file and help tabs to the enu bar
 	    jmb.add(file);
 	    jmb.add(help); 
 	    jmb.add(console);
@@ -85,11 +85,13 @@ public class GraphicMenu extends JPanel implements ActionListener  {
 			public void actionPerformed(ActionEvent arg0) 
 			    {
 						if(console.getText().equals("penup")) {
-			  	          JOptionPane.showMessageDialog(console, "penup works");
-			    		}
+							GraphicPanel pu = new GraphicPanel(frame);
+							pu.penUp();
+						}
 			    		
 			    		else if (console.getText().equals("pendown")) {
-				  	      JOptionPane.showMessageDialog(console, "pendown works");
+			    			GraphicPanel pd = new GraphicPanel(frame);
+							pd.penDown();
 			    		}
 			    		
 			    		else if (console.getText().equals("turnleft")) {
@@ -101,7 +103,8 @@ public class GraphicMenu extends JPanel implements ActionListener  {
 			    		}
 			    		
 			    		else if (console.getText().equals("forward")) {
-			    			JOptionPane.showMessageDialog(console, "forward works");
+			    			GraphicPanel fwd = new GraphicPanel(frame);
+			    			fwd.forward(270);
 				    	}
 			    		
 			    		else if (console.getText().equals("backward")) {
