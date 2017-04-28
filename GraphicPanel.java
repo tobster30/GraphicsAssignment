@@ -17,12 +17,16 @@ import javax.swing.text.JTextComponent;
 @SuppressWarnings("serial")
 public class GraphicPanel extends JPanel 
 {
-	
-	
 	private int xPos = 0, yPos=0;
 	private boolean penUp = true;
-	private int direction = 180;
+	private final static int DOWN = 0;
+	private final static int UP = 1;
+	private final static int LEFT = 2;
+	private final static int RIGHT = 3;
+	private int direction = DOWN;
 	
+    private JTextField console = new JTextField(15);
+
 	
 	//The default BG colour of the image.
 	
@@ -56,54 +60,127 @@ public class GraphicPanel extends JPanel
 	
 	public void turnRight()
 	{
+		switch(direction)
+		{
+			case UP:
+					direction = RIGHT;
+					break;
+			case DOWN:
+					direction = LEFT;
+					break;
+			case LEFT:
+					direction = UP;
+					break;
+			case RIGHT:
+					direction = DOWN;
+					break;
+			default:
+					break;
 		
+		}	
 	}
 	
 	public void turnLeft()
 	{
+		switch(direction)
+		{
+			case UP:
+					direction = LEFT;
+					break;
+			case DOWN:
+					direction = RIGHT;
+					break;
+			case LEFT:
+					direction = DOWN;
+					break;
+			case RIGHT:
+					direction = UP;
+					break;
+			default:
+					break;
 		
+		}
 	}
 	
 	public void forward(int amount)
 	{
-		if (direction == 180)
+		
+		if(penUp)
+			return;
+		
+		if (direction == DOWN)
 		{
-			if(penUp == false)
-				{
-					drawLine(Color.red, xPos, yPos, xPos, yPos + amount );
-					yPos = yPos + amount;
-				}
-			
-		else if (direction == 270)
-				
-				{
-			if(penUp == false)
-				{
-					drawLine(Color.red, xPos, yPos, xPos - amount, yPos );
-					xPos = xPos - amount;
-				}
-			}
+			drawLine(Color.red, xPos, yPos, xPos, yPos + amount );
+			yPos = yPos + amount;
 		}
+		
+		else if (direction == UP)
+		{
+			drawLine(Color.red, xPos, yPos, xPos, yPos - amount );
+			yPos = yPos - amount;
+		}
+			
+		else if (direction == LEFT)		
+		{
+			drawLine(Color.red, xPos, yPos, xPos - amount, yPos );
+			xPos = xPos - amount;
+		}
+		
+		else if (direction == RIGHT)		
+		{
+			drawLine(Color.red, xPos, yPos, xPos + amount, yPos );
+			xPos = xPos + amount;
+		}
+			
 	}
+	
 	
 	public void backward(int amount)
 	{
+		if(penUp)
+			return;
 		
+		if (direction == DOWN)
+		{
+			drawLine(Color.red, xPos, yPos, xPos, yPos - amount );
+			yPos = yPos - amount;
+		}
+		
+		else if (direction == UP)
+		{
+			drawLine(Color.red, xPos, yPos, xPos, yPos + amount );
+			yPos = yPos + amount;
+		}
+			
+		else if (direction == LEFT)		
+		{
+			drawLine(Color.red, xPos, yPos, xPos + amount, yPos );
+			xPos = xPos + amount;
+		}
+		
+		else if (direction == RIGHT)		
+		{
+			drawLine(Color.red, xPos, yPos, xPos - amount, yPos );
+			xPos = xPos - amount;
+		}
 	}
 	
 	public void black()
 	{
-		
+		Graphics g = image.getGraphics();
+		g.setColor(Color.black);
 	}
 	
 	public void green()
 	{
-		
+		Graphics g = image.getGraphics();
+		g.setColor(Color.green);
 	}
 	
 	public void red()
 	{
-		
+		Graphics g = image.getGraphics();
+		g.setColor(Color.red);
 	}
 	
 	public void drawLine(Color color, int x1, int y1, int x2, int y2) {
@@ -146,7 +223,60 @@ public class GraphicPanel extends JPanel
 		
 		clear();
 		
-		}
+	
+    console.addActionListener(new ActionListener() 
+	{
+		public void actionPerformed(ActionEvent arg0) 
+		    {
+					if(console.getText().equals("penup")) {
+						penUp();
+					}
+		    		
+		    		else if (console.getText().equals("pendown")) {
+		    			penDown();
+		    		}
+		    		
+		    		else if (console.getText().equals("turnleft")) {
+				  	  JOptionPane.showMessageDialog(console, "turnleft works");
+		    		}
+		    		
+		    		else if (console.getText().equals("turnright")) {
+				  	   JOptionPane.showMessageDialog(console, "turnright works");
+		    		}
+		    		
+		    		else if (console.getText().equals("forward")) {
+		    			forward(10);
+			    	}
+		    		
+		    		else if (console.getText().equals("backward")) {
+				  	   JOptionPane.showMessageDialog(console, "backward works");
+			    	}
+		    		
+		    		else if (console.getText().equals("black")) {
+				  	   JOptionPane.showMessageDialog(console, "black works");
+			    	}
+		    		
+		    		else if (console.getText().equals("green")) {
+				  	   JOptionPane.showMessageDialog(console, "green works");
+			    	}
+		    		
+		    		else if (console.getText().equals("red")) {
+				  	    JOptionPane.showMessageDialog(console, "red works");
+			    	}
+		    		
+		    		else if (console.getText().equals("reset")) {
+		    			JOptionPane.showMessageDialog(console, "reset works");
+			    	}
+		    		
+		    		else {
+				  	    JOptionPane.showMessageDialog(console, "Invalid command, try again");
+			    	}
+		    }
 		
+	});
+				add(console);
+
 	}
+	
+}
 	

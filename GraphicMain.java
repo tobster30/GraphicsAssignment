@@ -10,8 +10,6 @@ public class GraphicMain {
 		  
 		  GraphicPanel panel = new GraphicPanel(frame);
 		  frame.setContentPane(panel);
-		  /*panel.drawLine(Color.RED, 200, 200, 400, 400);
-		  panel.forward(270);*/
 
 		  GraphicMenu menu = new GraphicMenu(frame);		  
 

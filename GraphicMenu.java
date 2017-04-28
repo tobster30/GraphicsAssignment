@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -17,7 +19,6 @@ public class GraphicMenu extends JPanel implements ActionListener  {
 		
 	    JMenu file = new JMenu("File");
 	    JMenu help = new JMenu("Help");
-	    JTextField console = new JTextField(15);
 	    JMenuItem newImage = new JMenuItem("New"); 
 	    JMenuItem load = new JMenuItem("Load");	
 	    JMenuItem save = new JMenuItem("Save");
@@ -27,15 +28,16 @@ public class GraphicMenu extends JPanel implements ActionListener  {
 	    
 	public GraphicMenu(JFrame frame)
 	{
-	// adds the file and help tabs to the menu bar
+	// adds the file and help tabs to the enu bar
 	    jmb.add(file);
 	    jmb.add(help); 
-	    jmb.add(console);
 	    
 	// start again and create a new file
 	    newImage.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent ev) {
-	          JOptionPane.showMessageDialog(newImage, "New works");
+	          GraphicPanel clear = new GraphicPanel(frame);
+	          clear.clear();
+	          		  
 	        }
 	    });
 	    
@@ -57,11 +59,13 @@ public class GraphicMenu extends JPanel implements ActionListener  {
 	    });
 	    
 	 // save the current file  
-	    save.addActionListener(new ActionListener() {
+	   /*( save.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent ev) {
-	          JOptionPane.showMessageDialog(save, "Save works");
+	          try(FileWriter fw = new FileWriter(chooser.getSelectedFile()+".jpg")) {
+	        	  fw.write(sb.toString());
+	          }
 	        }
-	    });
+	    });*/
 	    
 	 // exit the program 
 	    exit.addActionListener(new ActionListener() {
@@ -80,55 +84,7 @@ public class GraphicMenu extends JPanel implements ActionListener  {
 	        }
 	    });
 	    
-	    console.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent arg0) 
-			    {
-						if(console.getText().equals("penup")) {
-			  	          JOptionPane.showMessageDialog(console, "penup works");
-			    		}
-			    		
-			    		else if (console.getText().equals("pendown")) {
-				  	      JOptionPane.showMessageDialog(console, "pendown works");
-			    		}
-			    		
-			    		else if (console.getText().equals("turnleft")) {
-					  	  JOptionPane.showMessageDialog(console, "turnleft works");
-			    		}
-			    		
-			    		else if (console.getText().equals("turnright")) {
-					  	   JOptionPane.showMessageDialog(console, "turnright works");
-			    		}
-			    		
-			    		else if (console.getText().equals("forward")) {
-			    			JOptionPane.showMessageDialog(console, "forward works");
-				    	}
-			    		
-			    		else if (console.getText().equals("backward")) {
-					  	   JOptionPane.showMessageDialog(console, "backward works");
-				    	}
-			    		
-			    		else if (console.getText().equals("black")) {
-					  	   JOptionPane.showMessageDialog(console, "black works");
-				    	}
-			    		
-			    		else if (console.getText().equals("green")) {
-					  	   JOptionPane.showMessageDialog(console, "green works");
-				    	}
-			    		
-			    		else if (console.getText().equals("red")) {
-					  	    JOptionPane.showMessageDialog(console, "red works");
-				    	}
-			    		
-			    		else if (console.getText().equals("reset")) {
-			    			JOptionPane.showMessageDialog(console, "reset works");
-				    	}
-			    		
-			    		else {
-					  	    JOptionPane.showMessageDialog(console, "Invalid command, try again");
-				    	}
-			    }	
-		});
+
 	    
 	      	    
 	    file.add(newImage);
