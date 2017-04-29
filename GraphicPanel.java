@@ -233,7 +233,8 @@ public class GraphicPanel extends JPanel
 					}
 		    		
 		    		else if (console.getText().equals("pendown")) {
-		    			penDown();
+		    			GraphicPanel pd = new GraphicPanel(frame);
+						pd.penDown();
 		    		}
 		    		
 		    		else if (console.getText().equals("turnleft")) {
@@ -245,7 +246,8 @@ public class GraphicPanel extends JPanel
 		    		}
 		    		
 		    		else if (console.getText().equals("forward")) {
-		    			forward(10);
+		    			GraphicPanel fwd = new GraphicPanel(frame);
+		    			fwd.forward(10);
 			    	}
 		    		
 		    		else if (console.getText().equals("backward")) {
