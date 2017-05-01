@@ -11,8 +11,9 @@ public class GraphicMain {
 		  GraphicPanel panel = new GraphicPanel(frame);
 		  frame.setContentPane(panel);
 
-		  GraphicMenu menu = new GraphicMenu(frame);		  
-
+		  GraphicMenu menu = new GraphicMenu(frame);	
+		  
+		  
 		  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		  frame.setSize(800,600);	       
 		  frame.setVisible(true);
