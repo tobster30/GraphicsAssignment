@@ -1,111 +1,280 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileWriter;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JFileChooser;
+import javax.swing.text.JTextComponent;
 
 
+ //Represents the graphics display panel within the turtle program. This panel contains an image which is updated to reflect user commands.
+ 
 @SuppressWarnings("serial")
-public class GraphicMenu extends JPanel implements ActionListener  {
+public class GraphicPanel extends JPanel 
+{
+	private int xPos = 0, yPos=0;
+	private boolean penUp = true;
+	private final static int DOWN = 0;
+	private final static int UP = 1;
+	private final static int LEFT = 2;
+	private final static int RIGHT = 3;
+	private int direction = DOWN;
 	
-	JMenuBar jmb = new JMenuBar();
-		
-	    JMenu file = new JMenu("File");
-	    JMenu help = new JMenu("Help");
-	    JMenuItem newImage = new JMenuItem("New"); 
-	    JMenuItem load = new JMenuItem("Load");	
-	    JMenuItem save = new JMenuItem("Save");
-	    JMenuItem exit = new JMenuItem("Exit");
-	    JMenuItem about = new JMenuItem("About");  
+    private JTextField console = new JTextField(15);
 
-	    
-	public GraphicMenu(JFrame frame)
+	
+	//The default BG colour of the image.
+	
+	private final static Color BACKGROUND_COL = Color.DARK_GRAY;
+	
+	
+	 // The underlying image used for drawing. This is required so any previous drawing activity is persistent on the panel.
+	 
+	private BufferedImage image;
+
+	/*
+	 * Draw a line on the image using the given colour.
+	 * 
+	 * @param color
+	 * @param x1
+	 * @param y1
+	 * @param x2
+	 * @param y2
+	*/
+	
+	public void penDown()
 	{
-	// adds the file and help tabs to the enu bar
-	    jmb.add(file);
-	    jmb.add(help); 
-	    
-	// start again and create a new file
-	    newImage.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent ev) {
-	          GraphicPanel clear = new GraphicPanel(frame);
-	          clear.clear();
-	          		  
-	        }
-	    });
-	    
-	// loads a different file    
-	    load.addActionListener(new ActionListener() 
-	    {
-	        public void actionPerformed(ActionEvent ev) 
-	        {
-	          JFileChooser fc = new JFileChooser();
-	          fc.setCurrentDirectory(new java.io.File("C:/Users/Toby/Desktop"));
-	          fc.setDialogTitle("Load");
-	          fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-	          if (fc.showOpenDialog(load) == JFileChooser.APPROVE_OPTION)
-		          {
-		        	  
-		          }
-	          System.out.println(fc.getSelectedFile().getAbsolutePath());
-	        }
-	    });
-	    
-	 // save the current file  
-	   /*( save.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent ev) {
-	          try(FileWriter fw = new FileWriter(chooser.getSelectedFile()+".jpg")) {
-	        	  fw.write(sb.toString());
-	          }
-	        }
-	    });*/
-	    
-	 // exit the program 
-	    exit.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent ev) {
-	        	int reply = JOptionPane.showConfirmDialog(exit, "Are you sure you want to exit? Unsaved changes will be lost");
-	        		if ( reply == JOptionPane.YES_OPTION){
-	        			System.exit(0);
-	        		}
-	        }
-	    });
-	    
-	  // about option  
-	    about.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent ev) {
-	          JOptionPane.showMessageDialog(about, "About works");
-	        }
-	    });
-	    
-
-	    
-	      	    
-	    file.add(newImage);
-	    file.add(load);
-		file.add(save);
-		file.add(exit);
-		help.add(about);	
-		
-		frame.setJMenuBar(jmb);
-		
-		
-				
+		penUp = false;
 	}
-
+	
+	public void penUp()
+	{
+		penUp = true;
+	}
+	
+	
+	public void turnRight()
+	{
+		switch(direction)
+		{
+			case UP:
+					direction = RIGHT;
+					break;
+			case DOWN:
+					direction = LEFT;
+					break;
+			case LEFT:
+					direction = UP;
+					break;
+			case RIGHT:
+					direction = DOWN;
+					break;
+			default:
+					break;
+		
+		}	
+	}
+	
+	public void turnLeft()
+	{
+		switch(direction)
+		{
+			case UP:
+					direction = LEFT;
+					break;
+			case DOWN:
+					direction = RIGHT;
+					break;
+			case LEFT:
+					direction = DOWN;
+					break;
+			case RIGHT:
+					direction = UP;
+					break;
+			default:
+					break;
+		
+		}
+	}
+	
+	public void forward(int amount)
+	{
+		
+		if(penUp)
+			return;
+		
+		if (direction == DOWN)
+		{
+			drawLine(Color.red, xPos, yPos, xPos, yPos + amount );
+			yPos = yPos + amount;
+		}
+		
+		else if (direction == UP)
+		{
+			drawLine(Color.red, xPos, yPos, xPos, yPos - amount );
+			yPos = yPos - amount;
+		}
+			
+		else if (direction == LEFT)		
+		{
+			drawLine(Color.red, xPos, yPos, xPos - amount, yPos );
+			xPos = xPos - amount;
+		}
+		
+		else if (direction == RIGHT)		
+		{
+			drawLine(Color.red, xPos, yPos, xPos + amount, yPos );
+			xPos = xPos + amount;
+		}
+			
+	}
+	
+	
+	public void backward(int amount)
+	{
+		if(penUp)
+			return;
+		
+		if (direction == DOWN)
+		{
+			drawLine(Color.red, xPos, yPos, xPos, yPos - amount );
+			yPos = yPos - amount;
+		}
+		
+		else if (direction == UP)
+		{
+			drawLine(Color.red, xPos, yPos, xPos, yPos + amount );
+			yPos = yPos + amount;
+		}
+			
+		else if (direction == LEFT)		
+		{
+			drawLine(Color.red, xPos, yPos, xPos + amount, yPos );
+			xPos = xPos + amount;
+		}
+		
+		else if (direction == RIGHT)		
+		{
+			drawLine(Color.red, xPos, yPos, xPos - amount, yPos );
+			xPos = xPos - amount;
+		}
+	}
+	
+	public void black()
+	{
+		Graphics g = image.getGraphics();
+		g.setColor(Color.black);
+	}
+	
+	public void green()
+	{
+		Graphics g = image.getGraphics();
+		g.setColor(Color.green);
+	}
+	
+	public void red()
+	{
+		Graphics g = image.getGraphics();
+		g.setColor(Color.red);
+	}
+	
+	public void drawLine(Color color, int x1, int y1, int x2, int y2) {
+		
+		Graphics g = image.getGraphics();
+		
+		g.setColor(color);
+		
+		g.drawLine(x1, y1, x2, y2);
+	}
+	
+	 //Clears the image contents.
+	 
+	public void clear() {
+		
+		Graphics g = image.getGraphics();
+		
+		g.setColor(BACKGROUND_COL);
+		
+		g.fillRect(0, 0, image.getWidth(),  image.getHeight());
+	}
+	
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void paint(Graphics g) {
+
+		// render the image on the panel.
+		g.drawImage(image, 0, 0, null);
 	}
+
+	 //Constructor.
+	 	
+	GraphicPanel(JFrame frame) {
+						
+		setPreferredSize(new Dimension(800, 600));
+
+		image = new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB);
+		
+		// Set max size of the panel, so that is matches the max size of the image.
+		setMaximumSize(new Dimension(image.getWidth(), image.getHeight()));
+		
+		clear();
+		
+		console.addActionListener(new ActionListener() 
+				{
+					public void actionPerformed(ActionEvent arg0) 
+					    {
+								if(console.getText().contains("penup")) {
+									penUp();
+								}
+					    		
+					    		else if (console.getText().contains("pendown")) {
+									penDown();
+					    		}
+					    		
+					    		else if (console.getText().contains("turnleft")) {
+							  	  JOptionPane.showMessageDialog(console, "turnleft works");
+					    		}
+					    		
+					    		else if (console.getText().contains("turnright")) {
+							  	   JOptionPane.showMessageDialog(console, "turnright works");
+					    		}
+					    		
+					    		else if (console.getText().contains("forward")) {
+					    			forward(10);
+						    	}
+					    		
+					    		else if (console.getText().contains("backward")) {
+							  	   JOptionPane.showMessageDialog(console, "backward works");
+						    	}
+					    		
+					    		else if (console.getText().contains("black")) {
+							  	   JOptionPane.showMessageDialog(console, "black works");
+						    	}
+					    		
+					    		else if (console.getText().contains("green")) {
+							  	   JOptionPane.showMessageDialog(console, "green works");
+						    	}
+					    		
+					    		else if (console.getText().contains("red")) {
+							  	    JOptionPane.showMessageDialog(console, "red works");
+						    	}
+					    		
+					    		else if (console.getText().contains("reset")) {
+					    			JOptionPane.showMessageDialog(console, "reset works");
+						    	}
+					    		
+					    		else {
+							  	    JOptionPane.showMessageDialog(console, "Invalid command, try again");
+						    	}
+					    }
+					
+				});
+			add(console);
+	}
+	
 }
 	
-	
-
-		
