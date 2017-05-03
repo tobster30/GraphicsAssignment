@@ -15,11 +15,9 @@ public class GraphicConsole extends JTextField implements ActionListener {
 	{
 		setLayout (new BorderLayout());
 		this.panel = panel;
-
-		// TODO:	All of this goes in the actionPerformed override!
-		// PROTIP:	Use the debugger to see what ActionEvent e contains!
 	}
 	
+	// TODO:	Use the debugger to see what ActionEvent e contains!
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(this.getText().contains("penup"))
