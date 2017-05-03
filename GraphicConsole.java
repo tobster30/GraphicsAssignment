@@ -18,14 +18,6 @@ public class GraphicConsole extends JTextField implements ActionListener {
 
 		// TODO:	All of this goes in the actionPerformed override!
 		// PROTIP:	Use the debugger to see what ActionEvent e contains!
-
-		// 	if(this.getText().contains("penup")) {
-		// 		panel.penUp();
-		// 	}
-			
-		// 	else if (this.getText().contains("pendown")) {
-		// 		penDown();
-		// 	}
 			
 		// 	else if (this.getText().contains("turnleft")) {
 		// 		JOptionPane.showMessageDialog(this, "turnleft works");
@@ -67,5 +59,9 @@ public class GraphicConsole extends JTextField implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(this.getText().contains("penup"))
+			panel.setPenUp(true);
+		else if (this.getText().contains("pendown"))
+			panel.setPenUp(false);
 	}
 }
