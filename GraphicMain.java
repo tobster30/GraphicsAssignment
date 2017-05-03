@@ -5,10 +5,9 @@ public class GraphicMain {
 	
 	public static void main(String[] args)
 	   {
-		//create window
 		  JFrame frame = new JFrame("Graphics Assignment");
 		  
-		  GraphicPanel panel = new GraphicPanel(frame);
+		  GraphicPanel panel = new GraphicPanel();
 		  frame.setContentPane(panel);
 
 		  GraphicMenu menu = new GraphicMenu(frame);	

@@ -28,7 +28,7 @@ public class GraphicMenu extends JPanel implements ActionListener  {
 	    
 	public GraphicMenu(JFrame frame)
 	{
-	// adds the file and help tabs to the enu bar
+	// adds the file and help tabs to the menu bar
 	    jmb.add(file);
 	    jmb.add(help); 
 	    
