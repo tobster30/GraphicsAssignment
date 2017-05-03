@@ -8,65 +8,64 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
-public class GraphicConsole extends JPanel {
-	private JTextField console;
+public class GraphicConsole extends JTextField implements ActionListener {
+	GraphicPanel panel;
 
-	public GraphicConsole (JFrame frame) 
+	public GraphicConsole (GraphicPanel panel;) 
 	{
 		setLayout (new BorderLayout());
-		console.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				if(console.getText().contains("penup")) {
-					panel.penUp();
-					//panel.repaint();
-				}
-				
-				else if (console.getText().contains("pendown")) {
-					//penDown();
-					//repaint();
-				}
-				
-				else if (console.getText().contains("turnleft")) {
-					JOptionPane.showMessageDialog(console, "turnleft works");
-				}
-				
-				else if (console.getText().contains("turnright")) {
-					JOptionPane.showMessageDialog(console, "turnright works");
-				}
-				
-				else if (console.getText().startsWith("forward")) {
-					//forward(direction);
-					//repaint();
-				}
-				
-				else if (console.getText().contains("backward")) {
-					JOptionPane.showMessageDialog(console, "backward works");
-				}
-				
-				else if (console.getText().contains("black")) {
-					JOptionPane.showMessageDialog(console, "black works");
-				}
-				
-				else if (console.getText().contains("green")) {
-					JOptionPane.showMessageDialog(console, "green works");
-				}
-				
-				else if (console.getText().contains("red")) {
-					JOptionPane.showMessageDialog(console, "red works");
-				}
-				
-				else if (console.getText().contains("reset")) {
-					JOptionPane.showMessageDialog(console, "reset works");
-				}
-				
-				else {
-					JOptionPane.showMessageDialog(console, "Invalid command, try again");
-				}
-			}
-		});
-		
-		frame.add(console, BorderLayout.NORTH);
+		this.panel = panel;
+
+		// TODO:	All of this goes in the actionPerformed override!
+		// PROTIP:	Use the debugger to see what ActionEvent e contains!
+
+		// 	if(this.getText().contains("penup")) {
+		// 		panel.penUp();
+		// 	}
+			
+		// 	else if (this.getText().contains("pendown")) {
+		// 		penDown();
+		// 	}
+			
+		// 	else if (this.getText().contains("turnleft")) {
+		// 		JOptionPane.showMessageDialog(this, "turnleft works");
+		// 	}
+			
+		// 	else if (this.getText().contains("turnright")) {
+		// 		JOptionPane.showMessageDialog(this, "turnright works");
+		// 	}
+			
+		// 	else if (this.getText().startsWith("forward")) {
+		// 		//forward(direction);
+		// 		//repaint();
+		// 	}
+			
+		// 	else if (this.getText().contains("backward")) {
+		// 		JOptionPane.showMessageDialog(this, "backward works");
+		// 	}
+			
+		// 	else if (this.getText().contains("black")) {
+		// 		JOptionPane.showMessageDialog(this, "black works");
+		// 	}
+			
+		// 	else if (this.getText().contains("green")) {
+		// 		JOptionPane.showMessageDialog(this, "green works");
+		// 	}
+			
+		// 	else if (this.getText().contains("red")) {
+		// 		JOptionPane.showMessageDialog(this, "red works");
+		// 	}
+			
+		// 	else if (this.getText().contains("reset")) {
+		// 		JOptionPane.showMessageDialog(this, "reset works");
+		// 	}
+			
+		// 	else {
+		// 		JOptionPane.showMessageDialog(this, "Invalid command, try again");
+		// 	}
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	}
 }

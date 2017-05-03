@@ -11,7 +11,7 @@ public class GraphicMain {
 		
 		GraphicPanel panel = new GraphicPanel();
 		frame.setJMenuBar(new GraphicMenu(panel));
-		GraphicConsole console = new GraphicMenu(panel);
+		frame.add(new GraphicMenu(panel), BorderLayout.NORTH);
 
 		frame.setContentPane(panel);
 		frame.setVisible(true);
