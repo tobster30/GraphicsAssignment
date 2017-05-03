@@ -13,8 +13,7 @@ import javax.swing.JFileChooser;
 
 
 @SuppressWarnings("serial")
-public class GraphicMenu extends JPanel implements ActionListener  {
-	JMenuBar jmb = new JMenuBar();
+public class GraphicMenu extends JMenuBar {
 	JMenu file = new JMenu("File");
 	JMenu help = new JMenu("Help");
 	JMenuItem newImage = new JMenuItem("New"); 
@@ -22,15 +21,9 @@ public class GraphicMenu extends JPanel implements ActionListener  {
 	JMenuItem save = new JMenuItem("Save");
 	JMenuItem exit = new JMenuItem("Exit");
 	JMenuItem about = new JMenuItem("About");
-	private GraphicPanel graphicPanel;
 
 	public GraphicMenu(GraphicPanel graphicPanel)
 	{
-		this.graphicPanel = graphicPanel;
-
-		// adds the file and help tabs to the menu bar
-	    jmb.add(file);
-	    jmb.add(help); 
 	    
 		// start again and create a new file
 	    newImage.addActionListener(new ActionListener()
@@ -90,19 +83,16 @@ public class GraphicMenu extends JPanel implements ActionListener  {
 			}
 		});
 
+		// adds the actionlisteners to the menuitems
 	    file.add(newImage);
 	    file.add(load);
 		file.add(save);
 		file.add(exit);
-		help.add(about);	
-		
-		frame.setJMenuBar(jmb);
-	}
+		help.add(about);
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		// adds the file and help tabs
+	    this.add(file);
+	    this.add(help); 
 	}
 }
 	

@@ -13,8 +13,6 @@ import javax.swing.text.JTextComponent;
 @SuppressWarnings("serial")
 public class GraphicPanel extends JPanel 
 {
-	private String deliminator = " ";
-	private String result;
 	private int xPos = 10, yPos=10;
 
 	// example of private variable with public accessors
@@ -22,16 +20,10 @@ public class GraphicPanel extends JPanel
 	public boolean getPenUp() { return this.penUp; }
 	public void setPenUp(boolean penUp) { this.penUp = penUp; }
 
-	// example of private variable with public setter
+	// example of private variable with public and protected setters
 	// using the Queen's English.
 	private Color colour;
-	public void setColour(Color colour) 
-	{
-		this.colour = colour; 
-		Graphics g = image.getGraphics();
-		g.setColor(Color.green);
-	}
-	
+	protected void setColour(Color colour) { this.colour = colour; }
 	public void black() { setColour(Colour.black); }
 	public void green() { setColour(Color.green); }
 	public void red() { setColour(Color.red); }
@@ -172,18 +164,14 @@ public class GraphicPanel extends JPanel
 
 	public void drawLine(Color color, int x1, int y1, int x2, int y2) {
 		Graphics g = image.getGraphics();
-		
 		g.setColor(color);
-		
 		g.drawLine(x1, y1, x2, y2);
 	}
 	 
 	public void clear() {
 		Graphics g = image.getGraphics();
-		
 		g.setColor(BACKGROUND_COL);
-		
-		g.fillRect(0, 0, image.getWidth(),  image.getHeight());
+		g.clearRect(0, 0, image.getWidth(),  image.getHeight());
 	}
 	
 	@Override
