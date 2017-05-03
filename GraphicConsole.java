@@ -20,7 +20,7 @@ public class GraphicConsole extends JTextField implements ActionListener {
 		else if(this.getText().contains("pendown"))
 			panel.setPenUp(false);
 		else if(this.getText().contains("forward"))
-			panel.forward();
+			panel.forward(10);
 		else
 			JOptionPane.showMessageDialog(this, "Invalid command, try again");
 

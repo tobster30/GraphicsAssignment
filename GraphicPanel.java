@@ -20,7 +20,7 @@ public class GraphicPanel extends JPanel
 	// using the Queen's English.
 	private Color colour;
 	protected void setColour(Color colour) { this.colour = colour; }
-	public void black() { setColour(Colour.black); }
+	public void black() { setColour(Color.black); }
 	public void green() { setColour(Color.green); }
 	public void red() { setColour(Color.red); }
 
@@ -97,7 +97,7 @@ public class GraphicPanel extends JPanel
 		}
 	}
 	
-	public void forward(int amount = 10)
+	public void forward(int amount)
 	{
 		
 		if(penUp)
