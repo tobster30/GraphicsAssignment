@@ -18,50 +18,17 @@ public class GraphicConsole extends JTextField implements ActionListener {
 
 		// TODO:	All of this goes in the actionPerformed override!
 		// PROTIP:	Use the debugger to see what ActionEvent e contains!
-			
-		// 	else if (this.getText().contains("turnleft")) {
-		// 		JOptionPane.showMessageDialog(this, "turnleft works");
-		// 	}
-			
-		// 	else if (this.getText().contains("turnright")) {
-		// 		JOptionPane.showMessageDialog(this, "turnright works");
-		// 	}
-			
-		// 	else if (this.getText().startsWith("forward")) {
-		// 		//forward(direction);
-		// 		//repaint();
-		// 	}
-			
-		// 	else if (this.getText().contains("backward")) {
-		// 		JOptionPane.showMessageDialog(this, "backward works");
-		// 	}
-			
-		// 	else if (this.getText().contains("black")) {
-		// 		JOptionPane.showMessageDialog(this, "black works");
-		// 	}
-			
-		// 	else if (this.getText().contains("green")) {
-		// 		JOptionPane.showMessageDialog(this, "green works");
-		// 	}
-			
-		// 	else if (this.getText().contains("red")) {
-		// 		JOptionPane.showMessageDialog(this, "red works");
-		// 	}
-			
-		// 	else if (this.getText().contains("reset")) {
-		// 		JOptionPane.showMessageDialog(this, "reset works");
-		// 	}
-			
-		// 	else {
-		// 		JOptionPane.showMessageDialog(this, "Invalid command, try again");
-		// 	}
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(this.getText().contains("penup"))
 			panel.setPenUp(true);
-		else if (this.getText().contains("pendown"))
+		else if(this.getText().contains("pendown"))
 			panel.setPenUp(false);
+		else if(this.getText().contains("forward"))
+			panel.forward();
+		else
+			JOptionPane.showMessageDialog(this, "Invalid command, try again");
 	}
 }

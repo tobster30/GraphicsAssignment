@@ -101,7 +101,7 @@ public class GraphicPanel extends JPanel
 		}
 	}
 	
-	public void forward(int amount)
+	public void forward(int amount = 10)
 	{
 		
 		if(penUp)
