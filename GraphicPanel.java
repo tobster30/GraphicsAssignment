@@ -25,7 +25,73 @@ public class GraphicPanel extends JPanel
 	private final static int RIGHT = 3;
 	private int direction = DOWN;
 	
-    private JTextField console = new JTextField(15);
+	
+	GraphicPanel() {
+
+		setPreferredSize(new Dimension(800, 600));
+
+		image = new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB);
+		
+		// Set max size of the panel, so that is matches the max size of the image.
+		setMaximumSize(new Dimension(image.getWidth(), image.getHeight()));
+		
+		clear();
+	
+	JTextField console = new JTextField(15);
+		console.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			    {
+						if(console.getText().contains("penup")) {
+							penUp();
+						}
+			    		
+			    		else if (console.getText().contains("pendown")) {
+							penDown();
+			    		}
+			    		
+			    		else if (console.getText().contains("turnleft")) {
+					  	  JOptionPane.showMessageDialog(console, "turnleft works");
+			    		}
+			    		
+			    		else if (console.getText().contains("turnright")) {
+					  	   JOptionPane.showMessageDialog(console, "turnright works");
+			    		}
+			    		
+			    		else if (console.getText().contains("forward")) {
+			    			forward(direction);
+				    	}
+			    		
+			    		else if (console.getText().contains("backward")) {
+					  	   JOptionPane.showMessageDialog(console, "backward works");
+				    	}
+			    		
+			    		else if (console.getText().contains("black")) {
+					  	   JOptionPane.showMessageDialog(console, "black works");
+				    	}
+			    		
+			    		else if (console.getText().contains("green")) {
+					  	   JOptionPane.showMessageDialog(console, "green works");
+				    	}
+			    		
+			    		else if (console.getText().contains("red")) {
+					  	    JOptionPane.showMessageDialog(console, "red works");
+				    	}
+			    		
+			    		else if (console.getText().contains("reset")) {
+			    			JOptionPane.showMessageDialog(console, "reset works");
+				    	}
+			    		
+			    		else {
+					  	    JOptionPane.showMessageDialog(console, "Invalid command, try again");
+				    	}
+			    }
+		});
+		
+		add(console);
+	}
+	
+    //private JTextField console = new JTextField(15);
 
 	
 	//The default BG colour of the image.
@@ -47,17 +113,19 @@ public class GraphicPanel extends JPanel
 	 * @param y2
 	*/
 	
+	// place pen onto canvas
 	public void penDown()
 	{
 		penUp = false;
 	}
 	
+	//raise pen from canvas
 	public void penUp()
 	{
 		penUp = true;
 	}
 	
-	
+	// turn right from current position
 	public void turnRight()
 	{
 		switch(direction)
@@ -80,6 +148,7 @@ public class GraphicPanel extends JPanel
 		}	
 	}
 	
+	// turn left from current position
 	public void turnLeft()
 	{
 		switch(direction)
@@ -102,6 +171,7 @@ public class GraphicPanel extends JPanel
 		}
 	}
 	
+	// draw forward a certain amount
 	public void forward(int amount)
 	{
 		
@@ -134,7 +204,7 @@ public class GraphicPanel extends JPanel
 			
 	}
 	
-	
+	// draw backwards a certain amount
 	public void backward(int amount)
 	{
 		if(penUp)
@@ -165,24 +235,28 @@ public class GraphicPanel extends JPanel
 		}
 	}
 	
+	// change colour to black
 	public void black()
 	{
 		Graphics g = image.getGraphics();
 		g.setColor(Color.black);
 	}
 	
+	//change colour to green
 	public void green()
 	{
 		Graphics g = image.getGraphics();
 		g.setColor(Color.green);
 	}
 	
+	// change colour to red
 	public void red()
 	{
 		Graphics g = image.getGraphics();
 		g.setColor(Color.red);
 	}
 	
+	// draw lines to xy co-ordinates
 	public void drawLine(Color color, int x1, int y1, int x2, int y2) {
 		
 		Graphics g = image.getGraphics();
@@ -212,69 +286,6 @@ public class GraphicPanel extends JPanel
 
 	 //Constructor.
 	 	
-	GraphicPanel(JFrame frame) {
-						
-		setPreferredSize(new Dimension(800, 600));
+	
 
-		image = new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB);
-		
-		// Set max size of the panel, so that is matches the max size of the image.
-		setMaximumSize(new Dimension(image.getWidth(), image.getHeight()));
-		
-		clear();
-		
-		console.addActionListener(new ActionListener() 
-				{
-					public void actionPerformed(ActionEvent arg0) 
-					    {
-								if(console.getText().contains("penup")) {
-									penUp();
-								}
-					    		
-					    		else if (console.getText().contains("pendown")) {
-									penDown();
-					    		}
-					    		
-					    		else if (console.getText().contains("turnleft")) {
-							  	  JOptionPane.showMessageDialog(console, "turnleft works");
-					    		}
-					    		
-					    		else if (console.getText().contains("turnright")) {
-							  	   JOptionPane.showMessageDialog(console, "turnright works");
-					    		}
-					    		
-					    		else if (console.getText().contains("forward")) {
-					    			forward(10);
-						    	}
-					    		
-					    		else if (console.getText().contains("backward")) {
-							  	   JOptionPane.showMessageDialog(console, "backward works");
-						    	}
-					    		
-					    		else if (console.getText().contains("black")) {
-							  	   JOptionPane.showMessageDialog(console, "black works");
-						    	}
-					    		
-					    		else if (console.getText().contains("green")) {
-							  	   JOptionPane.showMessageDialog(console, "green works");
-						    	}
-					    		
-					    		else if (console.getText().contains("red")) {
-							  	    JOptionPane.showMessageDialog(console, "red works");
-						    	}
-					    		
-					    		else if (console.getText().contains("reset")) {
-					    			JOptionPane.showMessageDialog(console, "reset works");
-						    	}
-					    		
-					    		else {
-							  	    JOptionPane.showMessageDialog(console, "Invalid command, try again");
-						    	}
-					    }
-					
-				});
-			add(console);
-	}
-	
 }
-	
