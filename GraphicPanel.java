@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,7 +16,9 @@ import javax.swing.text.JTextComponent;
 @SuppressWarnings("serial")
 public class GraphicPanel extends JPanel 
 {
-	private int xPos = 0, yPos=0;
+	private String deliminator = " ";
+	private String result;
+	private int xPos = 10, yPos=10;
 	private boolean penUp = true;
 	private final static int DOWN = 0;
 	private final static int UP = 1;
@@ -37,58 +38,64 @@ public class GraphicPanel extends JPanel
 		
 		clear();
 	
-	JTextField console = new JTextField(15);
-		console.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent arg0) 
-			    {
-						if(console.getText().contains("penup")) {
-							penUp();
-						}
-			    		
-			    		else if (console.getText().contains("pendown")) {
-							penDown();
-			    		}
-			    		
-			    		else if (console.getText().contains("turnleft")) {
-					  	  JOptionPane.showMessageDialog(console, "turnleft works");
-			    		}
-			    		
-			    		else if (console.getText().contains("turnright")) {
-					  	   JOptionPane.showMessageDialog(console, "turnright works");
-			    		}
-			    		
-			    		else if (console.getText().contains("forward")) {
-			    			forward(direction);
-				    	}
-			    		
-			    		else if (console.getText().contains("backward")) {
-					  	   JOptionPane.showMessageDialog(console, "backward works");
-				    	}
-			    		
-			    		else if (console.getText().contains("black")) {
-					  	   JOptionPane.showMessageDialog(console, "black works");
-				    	}
-			    		
-			    		else if (console.getText().contains("green")) {
-					  	   JOptionPane.showMessageDialog(console, "green works");
-				    	}
-			    		
-			    		else if (console.getText().contains("red")) {
-					  	    JOptionPane.showMessageDialog(console, "red works");
-				    	}
-			    		
-			    		else if (console.getText().contains("reset")) {
-			    			JOptionPane.showMessageDialog(console, "reset works");
-				    	}
-			    		
-			    		else {
-					  	    JOptionPane.showMessageDialog(console, "Invalid command, try again");
-				    	}
-			    }
-		});
+		/*JTextField console = new JTextField(15);
 		
-		add(console);
+			console.addActionListener(new ActionListener() 
+			{
+				public void actionPerformed(ActionEvent arg0) 
+				    {
+							if(console.getText().contains("penup")) {
+								penUp();
+								repaint();
+							}
+				    		
+				    		else if (console.getText().contains("pendown")) {
+								penDown();
+								repaint();
+				    		}
+				    		
+				    		else if (console.getText().contains("turnleft")) {
+						  	  JOptionPane.showMessageDialog(console, "turnleft works");
+				    		}
+				    		
+				    		else if (console.getText().contains("turnright")) {
+						  	   JOptionPane.showMessageDialog(console, "turnright works");
+				    		}
+				    		
+				    		else if (console.getText().startsWith("forward")) {
+				    			/*String[] choice = result.split(deliminator);
+				    			int amount = Integer.parseInt(choice);
+				    			forward(direction);
+				    			repaint();
+					    	}
+				    		
+				    		else if (console.getText().contains("backward")) {
+						  	   JOptionPane.showMessageDialog(console, "backward works");
+					    	}
+				    		
+				    		else if (console.getText().contains("black")) {
+						  	   JOptionPane.showMessageDialog(console, "black works");
+					    	}
+				    		
+				    		else if (console.getText().contains("green")) {
+						  	   JOptionPane.showMessageDialog(console, "green works");
+					    	}
+				    		
+				    		else if (console.getText().contains("red")) {
+						  	    JOptionPane.showMessageDialog(console, "red works");
+					    	}
+				    		
+				    		else if (console.getText().contains("reset")) {
+				    			JOptionPane.showMessageDialog(console, "reset works");
+					    	}
+				    		
+				    		else {
+						  	    JOptionPane.showMessageDialog(console, "Invalid command, try again");
+					    	}
+				    }
+			});
+		
+		add(console); */
 	}
 	
     //private JTextField console = new JTextField(15);
@@ -278,7 +285,7 @@ public class GraphicPanel extends JPanel
 	}
 	
 	@Override
-	public void paint(Graphics g) {
+	public void paintComponent(Graphics g) {
 
 		// render the image on the panel.
 		g.drawImage(image, 0, 0, null);
