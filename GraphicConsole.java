@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 
 public class GraphicConsole extends JTextField implements ActionListener {
-	GraphicPanel panel;
+	private GraphicPanel panel;
 
 	public GraphicConsole(GraphicPanel panel) 
 	{
@@ -23,5 +23,8 @@ public class GraphicConsole extends JTextField implements ActionListener {
 			panel.forward();
 		else
 			JOptionPane.showMessageDialog(this, "Invalid command, try again");
+
+		this.setText("");
+		panel.repaint();
 	}
 }
