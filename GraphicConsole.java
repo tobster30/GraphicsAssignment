@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 public class GraphicConsole extends JTextField implements ActionListener {
 	GraphicPanel panel;
 
-	public GraphicConsole (GraphicPanel panel;) 
+	public GraphicConsole(GraphicPanel panel) 
 	{
 		setLayout (new BorderLayout());
 		this.panel = panel;

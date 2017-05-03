@@ -24,7 +24,6 @@ public class GraphicMenu extends JMenuBar {
 
 	public GraphicMenu(GraphicPanel graphicPanel)
 	{
-	    
 		// start again and create a new file
 	    newImage.addActionListener(new ActionListener()
 		{

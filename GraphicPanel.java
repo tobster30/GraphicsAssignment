@@ -36,7 +36,8 @@ public class GraphicPanel extends JPanel
 	private final static Color BACKGROUND_COL = Color.DARK_GRAY;
 	private BufferedImage image;
 	
-	GraphicPanel() {
+	GraphicPanel()
+	{
 		setPreferredSize(new Dimension(800, 600));
 
 		image = new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB);
