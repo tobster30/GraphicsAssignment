@@ -13,7 +13,6 @@ public class GraphicConsole extends JTextField implements ActionListener {
 
 	public GraphicConsole(GraphicPanel panel) 
 	{
-		setLayout (new BorderLayout());
 		this.panel = panel;
 	}
 	
