@@ -14,36 +14,36 @@ import javax.swing.JFileChooser;
 
 @SuppressWarnings("serial")
 public class GraphicMenu extends JPanel implements ActionListener  {
-	
 	JMenuBar jmb = new JMenuBar();
-		
-	    JMenu file = new JMenu("File");
-	    JMenu help = new JMenu("Help");
-	    JMenuItem newImage = new JMenuItem("New"); 
-	    JMenuItem load = new JMenuItem("Load");	
-	    JMenuItem save = new JMenuItem("Save");
-	    JMenuItem exit = new JMenuItem("Exit");
-	    JMenuItem about = new JMenuItem("About");  
+	JMenu file = new JMenu("File");
+	JMenu help = new JMenu("Help");
+	JMenuItem newImage = new JMenuItem("New"); 
+	JMenuItem load = new JMenuItem("Load");	
+	JMenuItem save = new JMenuItem("Save");
+	JMenuItem exit = new JMenuItem("Exit");
+	JMenuItem about = new JMenuItem("About");
+	private GraphicPanel graphicPanel;
 
-	    
-	public GraphicMenu(JFrame frame)
+	public GraphicMenu(GraphicPanel graphicPanel)
 	{
-	// adds the file and help tabs to the menu bar
+		this.graphicPanel = graphicPanel;
+
+		// adds the file and help tabs to the menu bar
 	    jmb.add(file);
 	    jmb.add(help); 
 	    
-	// start again and create a new file
-	    newImage.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent ev) {
-	          GraphicPanel clear = new GraphicPanel(frame);
-	          clear.clear();
-	          		  
+		// start again and create a new file
+	    newImage.addActionListener(new ActionListener()
+		{
+	        public void actionPerformed(ActionEvent ev) 
+			{
+	          graphicPanel.clear();
 	        }
 	    });
 	    
-	// loads a different file    
-	    load.addActionListener(new ActionListener() 
-	    {
+		// loads a different file    
+	    load.addActionListener(new ActionListener()
+		{
 	        public void actionPerformed(ActionEvent ev) 
 	        {
 	          JFileChooser fc = new JFileChooser();
@@ -51,39 +51,45 @@ public class GraphicMenu extends JPanel implements ActionListener  {
 	          fc.setDialogTitle("Load");
 	          fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 	          if (fc.showOpenDialog(load) == JFileChooser.APPROVE_OPTION)
-		          {
-		        	  
-		          }
+			  {
+				  // TODO:
+			  }
 	          System.out.println(fc.getSelectedFile().getAbsolutePath());
 	        }
 	    });
 	    
-	 // save the current file  
-	   /*( save.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent ev) {
-	          try(FileWriter fw = new FileWriter(chooser.getSelectedFile()+".jpg")) {
-	        	  fw.write(sb.toString());
-	          }
-	        }
-	    });*/
+		// save the current file  
+		/*( save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				try(FileWriter fw = new FileWriter(chooser.getSelectedFile()+".jpg")) {
+					fw.write(sb.toString());
+				}
+			}
+		});*/
 	    
-	 // exit the program 
-	    exit.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent ev) {
+	 	// exit the program 
+	    exit.addActionListener(new ActionListener()
+		{
+	        public void actionPerformed(ActionEvent ev)
+			{
 	        	int reply = JOptionPane.showConfirmDialog(exit, "Are you sure you want to exit? Unsaved changes will be lost");
-	        		if ( reply == JOptionPane.YES_OPTION){
-	        			System.exit(0);
-	        		}
+
+				if (reply == JOptionPane.YES_OPTION)
+				{
+					System.exit(0);
+				}
 	        }
 	    });
 	    
-	  // about option  
-	    about.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent ev) {
-	          JOptionPane.showMessageDialog(about, "About works");
-	        }
-	    });
-	       	    
+		// about option  
+		about.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent ev)
+			{
+				JOptionPane.showMessageDialog(about, "About works");
+			}
+		});
+
 	    file.add(newImage);
 	    file.add(load);
 		file.add(save);
@@ -91,7 +97,6 @@ public class GraphicMenu extends JPanel implements ActionListener  {
 		help.add(about);	
 		
 		frame.setJMenuBar(jmb);
-				
 	}
 
 	@Override

@@ -8,9 +8,9 @@ public class GraphicMain {
 		  JFrame frame = new JFrame("Graphics Assignment");
 		  
 		  GraphicPanel panel = new GraphicPanel();
-		  frame.setContentPane(panel);
+		  GraphicMenu menu = new GraphicMenu(panel);
 
-		  GraphicMenu menu = new GraphicMenu(frame);	
+		  frame.setContentPane(panel);	
 		  
 		  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		  frame.setSize(800,600);	       
