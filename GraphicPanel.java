@@ -172,7 +172,9 @@ public class GraphicPanel extends JPanel
 	}
 	
 	@Override
-	public void paintComponent(Graphics g) {
-		g.drawImage(image, 0, 0, null);
-	}
+    public void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, null);
+    }
 }
