@@ -4,11 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.text.JTextComponent;
 
 @SuppressWarnings("serial")
 public class GraphicPanel extends JPanel 
