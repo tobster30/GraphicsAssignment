@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 import javax.swing.JTextField;
 
@@ -11,6 +12,7 @@ public class GraphicConsole extends JTextField implements ActionListener {
 	{
 		super(15);
 		this.panel = panel;
+		addActionListener(this);
 	}
 	
 	// TODO:	Use the debugger to see what ActionEvent e contains!
@@ -22,6 +24,8 @@ public class GraphicConsole extends JTextField implements ActionListener {
 			panel.setPenUp(false);
 		else if(this.getText().contains("forward"))
 			panel.forward(10);
+		else if(this.getText().contains("red"))
+			panel.red();
 		else
 			JOptionPane.showMessageDialog(this, "Invalid command, try again");
 

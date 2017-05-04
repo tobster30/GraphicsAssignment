@@ -9,7 +9,7 @@ public class GraphicMain {
 		
 		GraphicPanel panel = new GraphicPanel();
 		frame.setJMenuBar(new GraphicMenu(panel));
-		frame.add(new GraphicMenu(panel));
+		panel.add(new GraphicConsole(panel));
 
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().add(panel);

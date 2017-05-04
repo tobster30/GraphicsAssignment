@@ -12,7 +12,7 @@ public class GraphicPanel extends JPanel
 	private int xPos = 10, yPos=10;
 
 	// example of private variable with public accessors
-	private boolean penUp = true;
+	private boolean penUp = false;
 	public boolean getPenUp() { return this.penUp; }
 	public void setPenUp(boolean penUp) { this.penUp = penUp; }
 
@@ -41,16 +41,6 @@ public class GraphicPanel extends JPanel
 		setMaximumSize(new Dimension(image.getWidth(), image.getHeight()));
 		
 		clear();
-	}
-
-	public void penDown()
-	{
-		penUp = false;
-	}
-
-	public void penUp()
-	{
-		penUp = true;
 	}
 
 	public void turnRight()
@@ -173,7 +163,6 @@ public class GraphicPanel extends JPanel
 	
 	@Override
     public void paintComponent(Graphics g) {
-
         super.paintComponent(g);
         g.drawImage(image, 0, 0, null);
     }
