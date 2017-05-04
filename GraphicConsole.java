@@ -9,6 +9,7 @@ public class GraphicConsole extends JTextField implements ActionListener {
 
 	public GraphicConsole(GraphicPanel panel) 
 	{
+		super(15);
 		this.panel = panel;
 	}
 	
